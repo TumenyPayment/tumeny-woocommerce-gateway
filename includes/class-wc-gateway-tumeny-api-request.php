@@ -34,7 +34,7 @@ class WC_Gateway_Tumeny_Api_Request {
         return $body['token'];
     }
 
-    public function create_payment($order) {
+    public function create_payment($order, $callback_url) {
         $response = wp_remote_post($this->base_url.'/api/v1/plugin/payment', array(
             'method'      => 'POST',
             'sslverify' => FALSE,
@@ -49,6 +49,8 @@ class WC_Gateway_Tumeny_Api_Request {
                 'email' => $order->get_billing_email(),
                 'phoneNumber' => $order->get_billing_phone(),
                 'amount' => $order->get_total(),
+                'thirdPartyReferenceNumber' => $order->get_id(),
+                'callbackUrl' => $callback_url,
             )),
         ));
 
