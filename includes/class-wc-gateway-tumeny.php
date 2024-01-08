@@ -29,7 +29,7 @@ class WC_Gateway_Tumeny extends WC_Payment_Gateway {
 	 */
 	protected function setup_properties() {
 		$this->id                 = 'tumeny';
-		$this->icon               = apply_filters( 'woocommerce_tumeny_icon', plugins_url('../assets/icon.png', __FILE__ ) );
+		$this->icon               = apply_filters( 'woocommerce_gateway_icon', plugins_url('../assets/images/moc-zambia.png', __FILE__ ) );
 		$this->method_title       = __( 'Mobile Money Payment by TuMeNy', 'wc-tumeny' );
 		$this->method_description = __( 'Accepting Mobile Payment in Zambia.', 'wc-tumeny' );
 		$this->has_fields         = false;
@@ -58,7 +58,7 @@ class WC_Gateway_Tumeny extends WC_Payment_Gateway {
 				'title'       => __( 'Description', 'wc-tumeny' ),
 				'type'        => 'textarea',
 				'description' => __( 'Tumeny Mobile Money Payment method description that the customer will see on your website.', 'wc-tumeny' ),
-				'default'     => __( 'Tumeny Mobile Payments before delivery.', 'wc-tumeny' ),
+				'default'     => __( 'Mobile Money Payment in Zambia - TuMeNy supports MTN, Airtel and Zamtel.', 'wc-tumeny' ),
 				'desc_tip'    => true,
 			),
             'base_url'         => array(
@@ -81,6 +81,18 @@ class WC_Gateway_Tumeny extends WC_Payment_Gateway {
             ),
 		);
 	}
+
+    public function get_icon() {
+        $icon_url  = plugin_dir_url( __FILE__ ) . 'assets/images/moc-zambia.png';
+        $icon_html = sprintf('<img src="%s" alt="%s" />', $icon_url, $this->method_title );
+
+        return apply_filters( 'woocommerce_gateway_icon', $icon_html, $this->id );
+    }
+
+    public function get_logo_url() {
+        $url  = plugins_url( '../assets/images/moc-zambia.png', __FILE__ );
+        return apply_filters( 'wc_tumeny_gateway_icon_url', $url, $this->id );
+    }
 
 	/**
 	 * Process the payment and return the result.
@@ -124,8 +136,8 @@ class WC_Gateway_Tumeny extends WC_Payment_Gateway {
             wp_redirect( $this->get_return_url( $order ) );
             exit();
         }
-        if (paymentstatus::FAILED === $status) {
-            wc_add_notice( 'Oops! Your Payment Failed - Please try again' , 'error' );
+        else {
+            wc_add_notice( 'Oops! Your Payment Did not complete successfully - Please try again' , 'error' );
             wp_redirect( WC()->cart->get_checkout_url() );
             exit();
         }

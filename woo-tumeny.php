@@ -23,16 +23,29 @@ add_action( 'plugins_loaded', 'neo_wc_gateway_tumeny_payment_init', 66 );
 add_filter( 'woocommerce_payment_gateways', 'neo_wc_gateway_tumeny_add_payment_gateway');
 
 function neo_wc_gateway_tumeny_payment_init() {
-    if( class_exists( 'WC_Payment_Gateway' ) ) {
-		require_once plugin_dir_path( __FILE__ ) . '/includes/class-wc-gateway-tumeny.php';
-		require_once plugin_dir_path( __FILE__ ) . '/includes/class-wc-gateway-tumeny-api-request.php';
-		require_once plugin_dir_path( __FILE__ ) . '/includes/constants/payment_status.php';
+
+    if(!class_exists( 'WC_Payment_Gateway' ) ) {
+        add_action( 'admin_notices', 'neo_wc_tumeny_wc_missing_notice' );
+        return;
 	}
+
+    require_once plugin_dir_path( __FILE__ ) . '/includes/class-wc-gateway-tumeny.php';
+    require_once plugin_dir_path( __FILE__ ) . '/includes/class-wc-gateway-tumeny-api-request.php';
+    require_once plugin_dir_path( __FILE__ ) . '/includes/constants/payment_status.php';
 }
 
 function neo_wc_gateway_tumeny_add_payment_gateway( $gateways ) {
-    $gateways[] = 'WC_Gateway_Tumeny';
+    if ( 'ZK' === get_woocommerce_currency() || 'ZMW' === get_woocommerce_currency() ) {
+        $gateways[] = 'WC_Gateway_Tumeny';
+    }
     return $gateways;
+}
+
+/**
+ * Display a notice if WooCommerce is not installed
+ */
+function neo_wc_tumeny_wc_missing_notice() {
+    echo '<div class="error"><p><strong>' . sprintf( __( 'Tumeny Payment requires WooCommerce to be installed and active. Click %s to install WooCommerce.', 'woo-tumeny' ), '<a href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce&TB_iframe=true&width=772&height=539' ) . '" class="thickbox open-plugin-details-modal">here</a>' ) . '</strong></p></div>';
 }
 
 /**

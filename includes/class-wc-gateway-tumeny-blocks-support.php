@@ -65,7 +65,7 @@ final class WC_Gateway_Tumeny_Blocks_Support extends AbstractPaymentMethodType {
 		return array(
 			'title'             => $this->gateway->title,
 			'description'       => $this->gateway->description,
-//			'logo_urls'         => array( $payment_gateways['paystack']->get_logo_url() ),
+			'logo_urls'         => array( $this->gateway->get_logo_url() ),
 		);
 	}
 }
