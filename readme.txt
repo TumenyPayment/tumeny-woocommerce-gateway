@@ -1,5 +1,6 @@
 === TuMeNy Payment WooCommerce Gateway ===
 Contributors: nsisong
+Donate link: https://nsisongeo.me/donate
 Tags: tumeny, momo, zambia, airtel, zamtel, mobilemoney, woocommerce, payment gateway
 Requires at least: 5.8
 Tested up to: 6.4
@@ -63,8 +64,8 @@ This plugin is for TuMeNy Payment merchants in Zambia.
 
 == Screenshots ==
 
-2. TuMeNy Payment WooCommerce payment gateway settings page in Admin
+1. TuMeNy Payment WooCommerce payment gateway settings page in Admin
 
-3. TuMeNy Payment on WooCommerce Checkout
+2. TuMeNy Payment on WooCommerce Checkout
 
-1. TuMeNy Payment redirect payment collection form
+3. TuMeNy Payment redirect payment collection form

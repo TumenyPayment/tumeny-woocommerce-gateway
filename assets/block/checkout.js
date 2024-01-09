@@ -5,7 +5,7 @@
 		l=window.wc.wcSettings,
 		a=window.wp.i18n,
 		i=window.wp.htmlEntities,
-		s=(0,a.__)("Tumeny ","woo-tumeny"),
+		s=(0,a.__)("Tumeny ","wc-tumeny"),
 		r=({title:e})=>(0,i.decodeEntities)(e)||s,
 		o=({description:e})=>(0,i.decodeEntities)(e||""),
 		n=({logoUrls:t,label:l})=>(0,e.createElement)("div",{style:{display:"flex",flexDirection:"row",gap:"0.5rem",flexWrap:"wrap"}},

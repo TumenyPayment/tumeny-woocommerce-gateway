@@ -3,8 +3,7 @@
  * Plugin Name: TuMeNy Mobile Payment
  * Plugin URI: https://tumenypay.com
  * Author: Nsisong E.O
- * Author URI: https://nsisongeo.info
- * Description: Mobile Payments Gateway in Zambia.
+ * Description: Mobile Money Payment Gateway in Zambia.
  * Version: 0.1.0
  * License: GPL2
  * License URL: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -45,7 +44,7 @@ function neo_wc_gateway_tumeny_add_payment_gateway( $gateways ) {
  * Display a notice if WooCommerce is not installed
  */
 function neo_wc_tumeny_wc_missing_notice() {
-    echo '<div class="error"><p><strong>' . sprintf( __( 'Tumeny Payment requires WooCommerce to be installed and active. Click %s to install WooCommerce.', 'woo-tumeny' ), '<a href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce&TB_iframe=true&width=772&height=539' ) . '" class="thickbox open-plugin-details-modal">here</a>' ) . '</strong></p></div>';
+    echo '<div class="error"><p><strong>' . sprintf( __( 'Tumeny Payment requires WooCommerce to be installed and active. Click %s to install WooCommerce.', 'wc-tumeny' ), '<a href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce&TB_iframe=true&width=772&height=539' ) . '" class="thickbox open-plugin-details-modal">here</a>' ) . '</strong></p></div>';
 }
 
 /**

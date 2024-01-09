@@ -49,7 +49,7 @@ final class WC_Gateway_Tumeny_Blocks_Support extends AbstractPaymentMethodType {
         );
 
 		if ( function_exists( 'wp_set_script_translations' ) ) {
-			wp_set_script_translations( 'wc-tumeny-blocks', 'woo-tumeny', null);
+			wp_set_script_translations( 'wc-tumeny-blocks', 'wc-tumeny', null);
 		}
 
 		return array( 'wc-tumeny-blocks' );
