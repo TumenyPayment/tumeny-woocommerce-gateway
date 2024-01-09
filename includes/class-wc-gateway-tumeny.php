@@ -51,14 +51,14 @@ class WC_Gateway_Tumeny extends WC_Payment_Gateway {
 				'title'       => __( 'Title', 'wc-tumeny' ),
 				'type'        => 'text',
 				'description' => __( 'Tumeny Mobile Money Payment method description that the customer will see on your checkout.', 'wc-tumeny' ),
-				'default'     => __( 'Tumeny Mobile Money Payment', 'wc-tumeny' ),
+				'default'     => __( 'Mobile Money Payment', 'wc-tumeny' ),
 				'desc_tip'    => true,
 			),
 			'description'        => array(
 				'title'       => __( 'Description', 'wc-tumeny' ),
 				'type'        => 'textarea',
 				'description' => __( 'Tumeny Mobile Money Payment method description that the customer will see on your website.', 'wc-tumeny' ),
-				'default'     => __( 'Mobile Money Payment in Zambia - TuMeNy supports MTN, Airtel and Zamtel.', 'wc-tumeny' ),
+				'default'     => __( 'Mobile Money Payment in Zambia - supports MTN, Airtel and Zamtel.', 'wc-tumeny' ),
 				'desc_tip'    => true,
 			),
             'base_url'         => array(
