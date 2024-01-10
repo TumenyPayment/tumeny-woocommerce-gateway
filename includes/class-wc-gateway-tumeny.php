@@ -83,7 +83,7 @@ class WC_Gateway_Tumeny extends WC_Payment_Gateway {
 	}
 
     public function get_icon() {
-        $icon_url  = plugin_dir_url( __FILE__ ) . 'assets/images/moc-zambia.png';
+        $icon_url  = plugin_dir_url( __FILE__ ) . '../assets/images/moc-zambia.png';
         $icon_html = sprintf('<img src="%s" alt="%s" />', $icon_url, $this->method_title );
 
         return apply_filters( 'woocommerce_gateway_icon', $icon_html, $this->id );
