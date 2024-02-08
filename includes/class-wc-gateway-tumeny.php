@@ -122,18 +122,12 @@ class Tumeny_WC_Gateway extends WC_Payment_Gateway {
     public function tumeny_wc_gateway_payment_callback() {
 
         if (!isset($_GET['order_id'], $_GET['paymentId'])) {
-            wc_add_notice( 'Oops! Something went wrong, please try again' , 'error' );
+            wc_add_notice( 'Oops! Something went wrong, please try again ', 'error' );
             wp_redirect( WC()->cart->get_checkout_url() );
             exit();
         }
         $order_id = sanitize_text_field($_GET['order_id']);
         $payment_id = sanitize_text_field($_GET['paymentId']);
-
-        if (!is_int($order_id) || strlen($payment_id) < 10) {
-            wc_add_notice( 'Oops! Something went wrong, please try again' , 'error' );
-            wp_redirect( WC()->cart->get_checkout_url() );
-            exit();
-        }
 
         $status = $this->apiRequest->tumeny_wc_gateway_get_payment_status($payment_id);
 

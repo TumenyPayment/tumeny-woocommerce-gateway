@@ -30,7 +30,7 @@ function tumeny_wc_gateway_payment_init() {
 
     require_once plugin_dir_path( __FILE__ ) . '/includes/class-wc-gateway-tumeny.php';
     require_once plugin_dir_path( __FILE__ ) . '/includes/class-wc-gateway-tumeny-api-request.php';
-    require_once plugin_dir_path( __FILE__ ) . '/includes/constants/lass-wc-gateway-tumeny-payment-status.php';
+    require_once plugin_dir_path( __FILE__ ) . '/includes/constants/class-wc-gateway-tumeny-payment-status.php';
 }
 
 function tumeny_wc_gateway_add_payment_gateway( $gateways ) {
