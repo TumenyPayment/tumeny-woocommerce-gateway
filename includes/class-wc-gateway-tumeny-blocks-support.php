@@ -4,7 +4,7 @@ use Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodTyp
 use Automattic\WooCommerce\StoreApi\Payments\PaymentContext;
 use Automattic\WooCommerce\StoreApi\Payments\PaymentResult;
 
-final class WC_Gateway_Tumeny_Blocks_Support extends AbstractPaymentMethodType {
+final class Tumeny_WC_Gateway_Blocks_Support extends AbstractPaymentMethodType {
 
 
 	protected $name = 'tumeny';
@@ -15,7 +15,7 @@ final class WC_Gateway_Tumeny_Blocks_Support extends AbstractPaymentMethodType {
 	 */
 	public function initialize() {
 		$this->settings = get_option( 'woocommerce_tumeny_settings', array() );
-        $this->gateway = new WC_Gateway_Tumeny();
+        $this->gateway = new Tumeny_WC_Gateway();
 	}
 
 	/**

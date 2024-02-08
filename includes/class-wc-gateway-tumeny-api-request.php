@@ -1,6 +1,6 @@
 <?php
 
-class WC_Gateway_Tumeny_Api_Request {
+class Tumeny_WC_Gateway_Api_Request {
 
     private $base_url;
     private $api_key;
@@ -19,7 +19,7 @@ class WC_Gateway_Tumeny_Api_Request {
     }
 
 
-    public function get_token() {
+    public function tumeny_wc_gateway_get_token() {
         $response = wp_remote_post($this->base_url.'/api/token', array(
             'method'      => 'POST',
             'sslverify' => FALSE,
@@ -34,12 +34,12 @@ class WC_Gateway_Tumeny_Api_Request {
         return $body['token'];
     }
 
-    public function create_payment($order, $callback_url) {
+    public function tumeny_wc_gateway_create_payment($order, $callback_url) {
         $response = wp_remote_post($this->base_url.'/api/v1/plugin/payment', array(
             'method'      => 'POST',
             'sslverify' => FALSE,
             'headers' => array(
-                'Authorization' => 'Bearer '.$this->get_token(),
+                'Authorization' => 'Bearer '.$this->tumeny_wc_gateway_get_token(),
                 'content-type' => 'application/json'
             ),
             'body' => json_encode(array(
@@ -58,12 +58,12 @@ class WC_Gateway_Tumeny_Api_Request {
         return $body['payment']['id'];
     }
 
-    public function get_payment_status($payment_id) {
+    public function tumeny_wc_gateway_get_payment_status($payment_id) {
         $response = wp_remote_get($this->base_url.'/api/v1/payment/'.$payment_id, array(
             'method'      => 'GET',
             'sslverify' => FALSE,
             'headers' => array(
-                'Authorization' => 'Bearer '.$this->get_token(),
+                'Authorization' => 'Bearer '.$this->tumeny_wc_gateway_get_token(),
                 'content-type' => 'application/json'
             ),
         ));

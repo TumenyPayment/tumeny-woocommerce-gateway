@@ -1,6 +1,6 @@
 <?php
 
-class WC_Gateway_Tumeny extends WC_Payment_Gateway {
+class Tumeny_WC_Gateway extends WC_Payment_Gateway {
 
     private $apiRequest;
 	public function __construct() {
@@ -18,10 +18,10 @@ class WC_Gateway_Tumeny extends WC_Payment_Gateway {
 		$this->api_key = $this->get_option( 'api_key' );
 		$this->api_secret = $this->get_option( 'api_secret' );
 
-        $this->apiRequest = new WC_Gateway_Tumeny_Api_Request($this->base_url, $this->api_key, $this->api_secret);
+        $this->apiRequest = new Tumeny_WC_Gateway_Api_Request($this->base_url, $this->api_key, $this->api_secret);
 
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
-		add_action( 'woocommerce_api_'. $this->id, array( $this, 'neo_wc_payment_callback' ) );
+		add_action( 'woocommerce_api_'. $this->id, array( $this, 'tumeny_wc_gateway_payment_callback') );
 	}
 
 	/**
@@ -105,7 +105,7 @@ class WC_Gateway_Tumeny extends WC_Payment_Gateway {
 
 		if ( $order->get_total() > 0 ) {
             $callback_url = get_home_url().'/wc-api/tumeny?order_id='.$order_id;
-            $paymentId = $this->apiRequest->create_payment($order, $callback_url);
+            $paymentId = $this->apiRequest->tumeny_wc_gateway_create_payment($order, $callback_url);
             $url = $this->base_url.'/pay/'.$paymentId.'/new/payment';
 		} else {
 			$order->payment_complete();
@@ -119,13 +119,25 @@ class WC_Gateway_Tumeny extends WC_Payment_Gateway {
 		);
 	}
 
-    public function neo_wc_payment_callback() {
-        $order_id = isset($_GET['order_id']) ? $_GET['order_id'] : null;
-        $payment_id = isset($_GET['paymentId']) ? $_GET['paymentId'] : null;
+    public function tumeny_wc_gateway_payment_callback() {
 
-        $status = $this->apiRequest->get_payment_status($payment_id);
+        if (!isset($_GET['order_id'], $_GET['paymentId'])) {
+            wc_add_notice( 'Oops! Something went wrong, please try again' , 'error' );
+            wp_redirect( WC()->cart->get_checkout_url() );
+            exit();
+        }
+        $order_id = sanitize_text_field($_GET['order_id']);
+        $payment_id = sanitize_text_field($_GET['paymentId']);
 
-        if (paymentstatus::SUCCESS === $status) {
+        if (!is_int($order_id) || strlen($payment_id) < 10) {
+            wc_add_notice( 'Oops! Something went wrong, please try again' , 'error' );
+            wp_redirect( WC()->cart->get_checkout_url() );
+            exit();
+        }
+
+        $status = $this->apiRequest->tumeny_wc_gateway_get_payment_status($payment_id);
+
+        if (Tumeny_WC_Gateway_Payment_Status::SUCCESS === $status) {
             $order = wc_get_order( $order_id );
             $order->payment_complete();
             wc_reduce_stock_levels($order_id);
