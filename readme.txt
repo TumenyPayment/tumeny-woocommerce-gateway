@@ -1,6 +1,5 @@
 === TuMeNy Payment WooCommerce Gateway ===
-Contributors: nsisong
-Donate link: https://nsisongeo.me/donate
+Contributors: Nsisong E.O
 Tags: tumeny, momo, zambia, airtel, zamtel, mobilemoney, woocommerce, payment gateway
 Requires at least: 5.8
 Tested up to: 6.4
@@ -43,8 +42,8 @@ This plugin is for TuMeNy Payment merchants in Zambia.
 3. Description - This controls the message that appears under the payment gateway on the checkout page. You can change the default value to your needs.
 4. Base Url - Enter TuMeNy Payment base url which you can get from the TuMeNy Dashboard.
 5. API Key - Enter TuMeNy Payment API Key which you can get from the TuMeNy Dashboard.
-5. API Secret - Enter TuMeNy Payment API Secret which you can get from the TuMeNy Dashboard.
-8. Click on Save Changes to update the settings.
+6. API Secret - Enter TuMeNy Payment API Secret which you can get from the TuMeNy Dashboard.
+7. Click on Save Changes to update the settings.
 
 
 == Frequently Asked Questions ==
