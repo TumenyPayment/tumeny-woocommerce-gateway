@@ -22,7 +22,11 @@ With TuMeNy Payment for WooCommerce, you can accept mobile money payments from:
 
 = Note =
 
-This plugin is for TuMeNy Payment merchants in Zambia.
+This plugin is for TuMeNy Payment merchants in Zambia. This plugin rely on a third party system (Tumeny System) to work. You must first of all signup as a Tumeny customer (Merchant) to be able to use this plugin.
+
+Visit: https://www.tumenypay.com for more information on how to become a Merchant
+
+We recommend you read Tumeny Privacy Policy at https://www.tumenypay.com/privacy-policy
 
 == Installation ==
 
